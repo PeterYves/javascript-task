@@ -1,8 +1,5 @@
 $(document).ready(function () {
 	let average = 0;
-
-
-
 	function getValue() {
 		let subject_points = [Number($('#national_language').val()),
 		Number($('#english').val()),
@@ -34,20 +31,26 @@ $(document).ready(function () {
 		average = sum / 5;
 		$("#sum_indicate").text(sum);
 		$("#avarage_indicate").text(average);
+		
 		// write the process to output the average point referring to the above here
+
+
+
 	};
 
 	function get_achievement() {
 		// Write a process to output a string of rank values ("A" if the average score is 80 or more, "B" if it is 60 or more, "C" if it is 40 or more, "D" if it is less than 40)
 
-		if (average >= 80) {
+		if (average >= 80 && average<=100) {
 			return "A";
 		} else if (average >= 60 && average < 80) {
 			return "B";
 		} else if (average >= 40 && average < 60) {
 			return "C";
-		} else {
+		} else if(average >= 0 && average < 40) {
 			return "D";
+		}else{
+			return"Out of range!!";
 		}
 	};
 
@@ -68,7 +71,7 @@ $(document).ready(function () {
 		let pass = get_pass_or_failure();
 		// write the processing to output contents such as “Your grade is A when you press the “final judge” button.
 		// By writing the following, if you click the button of "final judge", "Your grade is (the value of" rank "is put here). A process is implemented in which a light blue balloon with the text “(The value of“ judgment ”) is is output.
-		$('#declaration').append(`<label id="alert-indicate" class="alert alert-info">Your grade is ${grade}. ${pass}</label>`);
+		$('#declaration').text(`Your grade is ${grade}. ${pass}`);
 	};
 
 	$('#national_language, #english, #mathematics, #science, #society').change(function () {
@@ -86,4 +89,8 @@ $(document).ready(function () {
 	$('#btn-declaration').click(function () {
 		$("#declaration").text(judgement());
 	});
+
+
+
+
 });
